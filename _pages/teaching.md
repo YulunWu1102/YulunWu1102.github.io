@@ -7,6 +7,4 @@ nav: true
 nav_order: 6
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
-
-Organize your courses by years, topics, or universities, however you like!
+I am the head TA for "ECE 310: Digital Signal Processing" in UIUC. I hold 6 hours of office hours per week, supporting undergraduate students in the office hours of the digital signal processing course. Provided an in-depth review of signal processing concepts and strategies to solve the DSP problems in homework and exams.
