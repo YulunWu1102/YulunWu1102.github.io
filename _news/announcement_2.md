@@ -1,7 +1,7 @@
 ---
 layout: post
-title: A long announcement with details
-date: 2015-11-07 16:11:00-0400
+title: My paper "Unsupervised Multi-channel Speech Dereverberation Via Diffusion" is accepted by WASPAA 2025!
+date: 2025-07-16
 inline: false
 related_posts: false
 ---
