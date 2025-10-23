@@ -1,24 +1,24 @@
 {
   "basics": {
-    "name": "Albert Einstein",
-    "label": "Scientist",
+    "name": "Yulun Wu",
+    "label": "Master of Science in Electrical and Computer Engineering",
     "image": "",
-    "email": "albert@einstein.de",
-    "phone": "(912) 123-4567",
+    "email": "yulun4@illinois.edu",
+    "phone": "(217) 419-3332",
     "url": "https://alshedivat.github.io/al-folio/",
-    "summary": "A German-born theoretical physicist, widely ranked among the greatest and most influential scientists of all time",
+    "summary": " Second-year master student in UIUC ECE with expertise in machine learning, audio signal processing research and internship experience, adept in computer engineering at both architectural and operation system levels.",
     "location": {
-      "address": "2712 Broadway St",
-      "postalCode": "CA 94115",
-      "city": "San Francisco",
+      "address": "Coordinate Science Laboratory, Room 241",
+      "postalCode": "61820",
+      "city": "Champaign",
       "countryCode": "US",
-      "region": "California"
+      "region": "Illinois"
     },
     "profiles": [
       {
-        "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
+        "network": "Instagram",
+        "username": "ben_wu_yulun",
+        "url": "https://www.instagram.com/ben_wu_yulun/"
       }
     ]
   },
@@ -60,55 +60,30 @@
   ],
   "awards": [
     {
-      "title": "Nobel Prize in Physics",
-      "date": "1921-11-01",
-      "awarder": "Royal Swedish Academy of Sciences",
-      "url": "https://www.nobelprize.org/prizes/physics/1921/einstein/biographical/",
-      "summary": "The Nobel Prizes are five separate prizes that, according to Alfred Nobel's will of 1895, are awarded to 'those who, during the preceding year, have conferred the greatest benefit to humankind.'"
+      "title": "Brian and Sophie Leung Scholarship",
+      "date": "2024",
+      "awarder": "Grainger College of Engineering",
+      "url": "https://ece.illinois.edu/academics/ugrad/scholarships-and-awards/scholarships/leung",
+      "summary": "The scholarship is given annually to a junior or senior at the University of Illinois at Urbana-Champaign enrolled in the Department of Electrical and Computer Engineering with an outstanding scholastic record."
+    },
+    {
+      "title": "James Scholar",
+      "date": "2022-2024",
+      "awarder": "Grainger College of Engineering",
+      "url": "https://jamesscholars.education.illinois.edu/",
     }
   ],
   "certificates": [
     {
-      "name": "Machine Learning",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-location-dot"
+      "name": "Internship Trainee Certificate",
+      "date": "2023-07-21",
+      "issuer": "Sony"
     },
     {
-      "name": "Quantum Computing",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-tag"
-    },
-    {
-      "name": "Quantum Information",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-envelope"
-    },
-    {
-      "name": "Quantum Cryptography",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-hashtag"
-    },
-    {
-      "name": "Quantum Communication",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-calendar"
-    },
-    {
-      "name": "Quantum Teleportation",
-      "date": "2018-01-01",
-      "issuer": "Stanford University",
-      "url": "https://example.com",
-      "icon": "fa-solid fa-clipboard-check"
+      "name": "Certificate of Attendance",
+      "date": "2025-10-15",
+      "issuer": "IEEE WASPAA",
+      "url": "https://urldefense.com/v3/__https://www.cvent.com/d/07ZTj2bsQUm_JWUHUQNIKw/bn65/L2/5N?__;!!DZ3fjg!8QEy8P-a2RWKYgHViowr9P7jjdNGBXjvQN3wwqGpGeEhAFvTsd7_TwmHZsuMIlZYCnuAoaNqILlUwjNbwXPolMcOIw$"
     }
   ],
   "publications": [

@@ -2,16 +2,16 @@
   type: map
   contents:
     - name: Full Name
-      value: Albert Einstein
+      value: Yulun Wu
     - name: Date of Birth
-      value: 14th March 1879
+      value: 2nd November 2000
     - name: Languages
-      value: English, German
+      value: English, Chinese
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
+    - title: Master of Science in ElectricalComputer Engineering
       institution: University of Zurich, Zurich, Switzerland
       year: 1905
       description:
