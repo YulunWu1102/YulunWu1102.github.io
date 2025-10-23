@@ -6,7 +6,7 @@
     "email": "yulun4@illinois.edu",
     "phone": "(217) 419-3332",
     "url": "https://alshedivat.github.io/al-folio/",
-    "summary": " Second-year master student in UIUC ECE with expertise in machine learning, audio signal processing research and internship experience, adept in computer engineering at both architectural and operation system levels.",
+    "summary": "Second-year master student in UIUC ECE with expertise in machine learning, audio signal processing research and internship experience, adept in computer engineering at both architectural and operation system levels.",
     "location": {
       "address": "Coordinate Science Laboratory, Room 241",
       "postalCode": "61820",
@@ -29,10 +29,13 @@
       "startDate": "2023-05-29",
       "endDate": "2023-07-21",
       "summary": "Develop and test active noise cancellation (ANC) algorithms for Sony's audio products.",
-      "highlights": ["Signal Processing", "Adaptive Filter", "Active Noise Cancellation"]
+      "highlights": [
+        "Signal Processing",
+        "Adaptive Filter",
+        "Active Noise Cancellation"
+      ]
     }
   ],
-
   "education": [
     {
       "institution": "University of Illinois Urbana Champaign",
@@ -42,7 +45,12 @@
       "startDate": "2024-08",
       "endDate": "2026-05",
       "score": "4.0",
-      "courses": ["Optimization", "Machine Learning", "Random Processes", "Diffusion/Flow Matching Models"]
+      "courses": [
+        "Optimization",
+        "Machine Learning",
+        "Random Processes",
+        "Diffusion/Flow Matching Models"
+      ]
     },
     {
       "institution": "University of Illinois Urbana Champaign",
@@ -52,7 +60,12 @@
       "startDate": "2020-08",
       "endDate": "2024-05",
       "score": "3.95",
-      "courses": ["Digital Signal Processing", "Vector Space Signal Processing", "Computer Systems", "Computer Architecture"]
+      "courses": [
+        "Digital Signal Processing",
+        "Vector Space Signal Processing",
+        "Computer Systems",
+        "Computer Architecture"
+      ]
     }
   ],
   "awards": [
@@ -136,20 +149,12 @@
     {
       "name": "Audio Speech Signal Processing",
       "icon": "fa-solid fa-tag",
-      "keywords": [
-        "TTS",
-        "Speech Enhancement",
-        "Speech Separation"
-      ]
+      "keywords": ["TTS", "Speech Enhancement", "Speech Separation"]
     },
     {
       "name": "Hobbies",
       "icon": "fa-solid fa-tag",
-      "keywords": [
-        "Motorcycle/Car Racing",
-        "Indie Music Production",
-        "Tennis"
-      ]
+      "keywords": ["Motorcycle/Car Racing", "Indie Music Production", "Tennis"]
     }
   ],
   "projects": [
@@ -160,13 +165,15 @@
       "startDate": "2025-02",
       "endDate": "2025-06",
       "url": "https://example.com"
-    },{
+    },
+    {
       "name": "Subspace Spatial Audio Codec with Multiple Speakers",
       "summary": "A spatial audio codec designed to handle 2 speakers with help of subspace method.",
       "highlights": ["Subspace Signal Processing", "Spatial Audio", "Audio Codec"],
       "startDate": "2024-06",
       "endDate": "2024-09"
-    },{
+    },
+    {
       "name": "Oracle-Beam: Subspace Hybrid-MVDR with Noise Modeling",
       "summary": "A speech enhancement method building on Subspace Hybrid-MVDR beamforming, incorporating subband PCA and noise modeling to suppress musical noise.",
       "highlights": ["Beamforming", "Subspace Signal Processing", "Spatial Audio"],
