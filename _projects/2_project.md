@@ -1,81 +1,104 @@
 ---
 layout: page
-title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
+title: Subspace-SpatialCodec — Neural Spatial Speech Coding with a Subspace-Driven Reference
+description: 2024/06 - 2024/08, 
+img: assets/img/SSC/SSC_chart.png
 importance: 2
 category: work
-giscus_comments: true
+related_publications: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
-
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
-
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+We explore spatial **speech coding** for **multi-speaker, multi-mic** recordings and propose **Subspace-SpatialCodec**: a two-branch neural codec that (i) derives **two reference channels** via a **subspace method** and encodes them with mono Encodec, and (ii) learns **complex ratio filters (CRFs)** to reconstruct all array channels from the references—preserving **spatial cues** (direct path, early and late reflections) under tight bit-budgets. Compared to SpatialCodec, our design targets **multi-source** scenes by steering references with the dominant subspace of the spatial covariance. :contentReference[oaicite:0]{index=0}
 
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
-
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.liquid loading="eager" path="assets/img/SSC/SSC_chart.png" title="Subspace-SpatialCodec Overview" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
-```
+<div class="caption">
+  Two-branch architecture: subspace-steered references (Encodec) + SpatialCodec-style CRFs for array reconstruction.
+</div>
 
-{% endraw %}
+---
+
+### TL;DR — What’s new
+- **Subspace-steered references:** Build **two** reference channels by eigen-decomposing per-bin spatial covariance, then encode with **pretrained mono Encodec (6 kbps × 2)**.  
+- **Spatial branch:** Condition a **CRF decoder** on (reference STFTs ⊕ spatial covariance features) to synthesize **M channels**.  
+- **Multi-speaker focus:** Designed to **scale beyond one speaker** by letting the references capture dominant steering vectors. :contentReference[oaicite:1]{index=1}
+
+---
+
+### Problem & Setup
+We code an \(M\)-mic mixture \(x(t)=\sum_{i=1}^{N}\big[h_{i1}(t),\ldots,h_{iM}(t)\big]*s_i(t)\) into a low-bitrate code \(C\) and reconstruct \(\hat{x}\) that keeps **spectral quality** and **spatial structure**:
+\[
+\hat{x}=\Psi_{\text{Dec}}(C),\quad C=\Psi_{\text{Quant}}(\Psi_{\text{Enc}}(x)).
+\]
+Training uses simulated rooms (pyroomacoustics), 1–4 speakers, circular array (10 cm radius), LibriTTS at 16 kHz, 37k six-second samples. STFT: 640-pt Hann, hop 320. :contentReference[oaicite:2]{index=2}
+
+---
+
+### Branch 1 — Two-Channel **Subspace** Reference Codec
+Compute per-frequency spatial covariance:
+\[
+\Phi(f)=X(f)\,X(f)^{\mathrm H},\quad X(f)\in\mathbb{C}^{M\times T}.
+\]
+Take the top-2 eigenvectors \(A\in\mathbb{C}^{M\times 2}\) and form the **steered references**:
+\[
+X_{\text{ref}}=A^{\mathrm H}X,\quad x_{\text{ref}}=\mathrm{ISTFT}(X_{\text{ref}}),
+\]
+then encode each reference with **pretrained Encodec (6 kbps)**. Motivation: provide **cleaner steering signals** for multi-source synthesis. :contentReference[oaicite:3]{index=3}
+
+---
+
+### Branch 2 — **Subspace-SpatialCodec** (CRF Decoder)
+Inputs (per TF bin):  
+- Real/imag of \(\Phi(t,f)\) (spatial covariance), and  
+- Real/imag of reference STFTs \(X_{\text{ref}}\).  
+
+A time-freq CNN encoder compresses features to **6 sub-bands**, with **residual vector quantization**; a transpose-CNN decoder predicts **complex ratio filters** \(W_m(c,t,f,l,k)\) to synthesize each array channel:
+\[
+\hat{X}_m(t,f)=\sum_{c=1}^{2}\sum_{l=-L}^{L}\sum_{k=-K}^{K} W_m(c,t,f,l,k)\, \hat{X}_{\text{ref}}(c,t+l,f+k).
+\]
+Training uses **codebook loss** + **time-domain SNR loss**; at train time the CRF applies to the **ground-truth** references to avoid branch mismatch. Typical settings: \(K{=}1\), \(L{=}4\), codebook size \(1024\), 4 RVQ layers. :contentReference[oaicite:4]{index=4}
+
+---
+
+### Metrics
+- **Channel metrics:** SNR, PESQ, STOI; **non-intrusive:** DNSMOS (SIG/BAK/OVRL).  
+- **Spatial metrics:** **RTF error** (angle between true/estimated principal RTFs) and **Spatial Similarity** via super-directive beamformer banks. Also report metrics after **beamforming** toward ground-truth DOAs. :contentReference[oaicite:5]{index=5}
+
+---
+
+### Key Results (8-mic, 24–36 kbps total)
+- With **ground-truth references**, SpatialCodec (+12 kbps) tops SNR; our **2-ref Subspace-SpatialCodec** is competitive on **PESQ/STOI** and DNSMOS.  
+- With **Encodec-reconstructed references**, SpatialCodec still leads **SNR** and **STOI**; our method shows **marginal gains** in some perceptual/non-intrusive scores.  
+- Takeaway: **Subspace references help** but are **not sufficient** alone to solve multi-speaker spatial coding; stronger **reference separation** and **joint ref-branch training** look promising. :contentReference[oaicite:6]{index=6}
+
+---
+
+### Why it matters
+- **Low-bitrate spatial capture** for arrays (telepresence, AR/HMD, meeting transcription) needs both **signal quality** and **spatial fidelity**.  
+- Subspace-steered references are a **simple, model-agnostic** way to inject **multi-source structure** into SpatialCodec-style decoders. :contentReference[oaicite:7]{index=7}
+
+---
+
+### Implementation Notes
+- Encoder/decoder: 6 conv stages with residual units; time-dilated 2-D CNNs; frequency strides compress **321 bins → 6 sub-bands**; RVQ on sub-bands; ADAM \(1\text{e}{-4}\), 100k steps, batch 8, 6 s segments.  
+- Total bitrate examples: **12 kbps spatial** + **(6 kbps × refs)**. :contentReference[oaicite:8]{index=8}
+
+---
+
+### Limitations & Next Steps
+- **SNR gap** vs. SpatialCodec persists in multi-speaker scenes, especially with **reconstructed references**.  
+- Future: integrate a **source separation front-end** for the reference branch and **train a dedicated reference codec** jointly to lower rate & mismatch. :contentReference[oaicite:9]{index=9}
+
+---
+
+### BibTeX (preprint)
+```bibtex
+@misc{wu2024subspace_spatialcodec,
+  title   = {SUBSPACE-SPATIALCODEC: A Neural Spatial Speech Coding Enhanced by Subspace Method for Multiple Sources Scenario},
+  author  = {Yulun Wu and Zhongweuyang Xu},
+  year    = {2024},
+  note    = {Preprint}
+}

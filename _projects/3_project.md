@@ -1,81 +1,86 @@
 ---
 layout: page
-title: project 3 with very long name
-description: a project that redirects to another website
-img: assets/img/7.jpg
-redirect: https://unsplash.com
-importance: 3
+title: OracleBeam — Improvements & Ablations on Subspace Hybrid-MVDR
+description: 2024 — ECE 513 final project on beamforming, musical-noise reduction, and subspace PCA variants
+img: assets/img/OracleBeam/overview.png
+importance: 2
 category: work
+related_publications: false
 ---
 
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
-
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
-
-    ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
-    ---
+We revisit **hybrid-MVDR** beamforming and propose three add-ons—**Mask-Hybrid-MVDR**, **Sub-band Inter-Method PCA**, and **Inter-Frequency PCA**—to reduce musical noise from per-TF beamformer switching while preserving speech and spatial cues. Experiments on the **SPEAR/EasyCom** smart-glasses array show **sub-band Inter-Method PCA** consistently outperforms iso-MVDR, hybrid-MVDR, and wide-band subspace baselines in SI-SDR/SDR/PESQ, with clearer spectrograms and lower noise floors. :contentReference[oaicite:0]{index=0}
 
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.liquid loading="eager" path="assets/img/OracleBeam/overview.png" title="OracleBeam overview: MVDR variants + subspace modules" class="img-fluid rounded z-depth-1" %}
+  </div>
 </div>
 <div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
+  Pipeline: dictionary-based Hybrid-MVDR → Inter-Method PCA (wide-band / sub-band) and ablations (Mask-MVDR, Inter-Frequency PCA). :contentReference[oaicite:1]{index=1}
 </div>
+
+### Background
+**MVDR** minimizes output power with a distortionless constraint \( \mathbf{w}^H\mathbf{d}(\theta)=1 \) using a noise covariance \( \mathbf{R} \):
+\[
+\mathbf{w}(f)=\frac{\mathbf{R}^{-1}(f)\mathbf{d}(\theta)}{\mathbf{d}^H(\theta)\mathbf{R}^{-1}(f)\mathbf{d}(\theta)}.
+\]
+**Hybrid-MVDR** builds a small dictionary of \( \mathbf{R} \) (isotropic, anisotropic diffuse, plane-wave, white), applies each MVDR per TF bin, and selects the **minimum-energy** output; this denoises aggressively but induces **musical noise** from rapid switching. **Subspace Hybrid-MVDR** then applies **Inter-Method PCA** to (iso, hybrid) outputs to smooth artifacts. :contentReference[oaicite:2]{index=2}
+
+### Our Add-ons
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/subspace_hybrid.png" title="Subspace Hybrid-MVDR" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/mask.png" title="Mask Hybrid-MVDR" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/inter_freq.png" title="Frequency Subspace Hybrid-MVDR" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
-    This image can also have a caption. It's like magic.
+    From left to right: Subspace Hybrid-MVDR, Mask Hybrid-MVDR, and Frequency Subspace Hybrid-MVDR
 </div>
 
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
+- **Mask-Hybrid-MVDR.** Treat the hybrid output as a rough speech estimate → derive **speech-presence mask** → update steering vector and NCM adaptively → run **adaptive MVDR** to mitigate non-linear musical distortion. :contentReference[oaicite:3]{index=3}
+- **Sub-band Inter-Method PCA.** Replace wide-band PCA with **per-band PCA** over \(K\) equal-width frequency groups: \( Z=[Z_1,\dots,Z_K],\; Z_i\in\mathbb{C}^{2\times F/K} \). This respects frequency-dependent beam patterns and SNR, improving high-band preservation. :contentReference[oaicite:4]{index=4}
+- **Inter-Frequency PCA.** Treat the **frequency axis as the signal space** and beamformer variants as samples \((M{+}1)\times F\), promoting spectral coherence; included as an ablation. :contentReference[oaicite:5]{index=5}
 
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
+### Dataset & Setup
+We use **SPEAR** (EASYCOM subset): meetings with up to 3 concurrent talkers, **smart-glasses 6-mic array**, plus 10 loudspeakers emitting diffuse noise. Ground-truth DOAs provided from on-device cameras. Metrics: **PESQ**, **SDR**, **SI-SDR**. :contentReference[oaicite:6]{index=6}
+
+<div class="row">
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.liquid loading="eager" path="assets/img/OracleBeam/results_table.png" title="Objective scores across methods" class="img-fluid rounded z-depth-1" %}
+  </div>
 </div>
 <div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
+  Results summary: sub-band Inter-Method PCA (especially with 16 sub-bands) yields the best average **SI-SDR/SDR/PESQ**; inter-frequency PCA underperforms; mask-MVDR is sensitive to mask quality. :contentReference[oaicite:7]{index=7}
 </div>
 
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
+### Key Findings
+- **Sub-band PCA > Wide-band PCA.** Per-band processing **reduces musical noise** and **retains high-freq speech energy** better than wide-band PCA that overfits low-freq energy. :contentReference[oaicite:8]{index=8}
+- **Hybrid-MVDR** excels at **aggressive denoising** but needs post-smoothing; PCA modules provide that smoothing. :contentReference[oaicite:9]{index=9}
+- **Inter-Frequency PCA** lags due to strong **cross-frequency noise correlation**, limiting separability when frequencies are treated as the feature space. :contentReference[oaicite:10]{index=10}
+- **Mask-MVDR** can help in principle, but gains are **mask-quality limited** when the hybrid estimate is not clean enough to seed robust masks. :contentReference[oaicite:11]{index=11}
 
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
+### Spectrograms (Qualitative)
+<div class="row">
+  <div class="col-sm mt-3 mt-md-0">
+    {% include figure.liquid loading="eager" path="assets/img/OracleBeam/spectra_noisy.png" title="Noisy" class="img-fluid rounded z-depth-1" %}
+    {% include figure.liquid loading="eager" path="assets/img/OracleBeam/spectra_iso.png" title="iso-MVDR" class="img-fluid rounded z-depth-1" %}
+    {% include figure.liquid loading="eager" path="assets/img/OracleBeam/spectra_hybrid.png" title="Hybrid-MVDR (musical noise)" class="img-fluid rounded z-depth-1" %}
+    {% include figure.liquid loading="eager" path="assets/img/OracleBeam/spectra_wideband.png" title="Inter-Method PCA (wide-band)" class="img-fluid rounded z-depth-1" %}
+    {% include figure.liquid loading="eager" path="assets/img/OracleBeam/spectra_subband.png" title="Inter-Method PCA (sub-band)" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
-```
+<div class="caption">
+  Sub-band PCA smooths switching artifacts and lowers the noise floor while preserving consonant bursts and high-band harmonics. :contentReference[oaicite:12]{index=12}
+</div>
 
-{% endraw %}
+### Takeaways
+- **Practical recipe:** run a small **NCM dictionary** (iso + a few anisotropic/plane-wave models) → **hybrid min-energy selection** → **sub-band PCA** (e.g., \(K{=}8\)–16).  
+- **When to skip:** if masks are unreliable or latency is tight, **avoid mask-MVDR**; prefer **sub-band PCA** for stable gains. :contentReference[oaicite:13]{index=13}
+
+### References
+Project report: OracleBeam — *Improvement and Ablations on Subspace Hybrid-MVDR*. UIUC ECE 513 Final Report. :contentReference[oaicite:14]{index=14}
