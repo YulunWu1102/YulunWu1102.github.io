@@ -444,9 +444,9 @@ ninja.data = [{
             },},{id: "news-i-attended-waspaa-2025-in-lake-tahoe",
           title: 'I attended WASPAA 2025 in Lake Tahoe!',
           description: "",
-          section: "News",},{id: "projects-project-1",
-          title: 'project 1',
-          description: "with background image",
+          section: "News",},{id: "projects-unsupervised-multi-channel-speech-dereverberation-via-diffusion",
+          title: 'Unsupervised Multi-channel Speech Dereverberation via Diffusion',
+          description: "2025/02 - 2025/06, accepted by WASPAA 2025",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
             },},{id: "projects-project-2",
