@@ -449,14 +449,14 @@ ninja.data = [{
           description: "2025/02 - 2025/06, accepted by WASPAA 2025",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
-            },},{id: "projects-project-2",
-          title: 'project 2',
-          description: "a project with a background image and giscus comments",
+            },},{id: "projects-subspace-spatialcodec-neural-spatial-speech-coding-with-a-subspace-driven-reference",
+          title: 'Subspace-SpatialCodec — Neural Spatial Speech Coding with a Subspace-Driven Reference',
+          description: "2024/06 - 2024/08,",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
-            },},{id: "projects-project-3-with-very-long-name",
-          title: 'project 3 with very long name',
-          description: "a project that redirects to another website",
+            },},{id: "projects-oraclebeam-improvements-amp-ablations-on-subspace-hybrid-mvdr",
+          title: 'OracleBeam — Improvements &amp;amp; Ablations on Subspace Hybrid-MVDR',
+          description: "2024 — ECE 513 final project on beamforming, musical-noise reduction, and subspace PCA variants",
           section: "Projects",handler: () => {
               window.location.href = "/projects/3_project/";
             },},{id: "projects-project-4",
