@@ -34,7 +34,7 @@ We revisit **hybrid-MVDR** beamforming and propose three add-ons—**Mask-Hybrid
 
 
 ### Background
-**MVDR** minimizes output power with a distortionless constraint $$\mathbf{w}^H\mathbf{d}(\theta)=1 $ using a noise covariance $ \mathbf{R} $:
+**MVDR** minimizes output power with a distortionless constraint $\mathbf{w}^H\mathbf{d}(\theta)=1 $ using a noise covariance $ \mathbf{R} $:
 
 $$
 \mathbf{w}(f)=\frac{\mathbf{R}^{-1}(f)\mathbf{d}(\theta)}{\mathbf{d}^H(\theta)\mathbf{R}^{-1}(f)\mathbf{d}(\theta)}.
