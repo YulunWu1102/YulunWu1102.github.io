@@ -8,29 +8,39 @@ category: work
 related_publications: false
 ---
 
-We revisit **hybrid-MVDR** beamforming and propose three add-ons—**Mask-Hybrid-MVDR**, **Sub-band Inter-Method PCA**, and **Inter-Frequency PCA**—to reduce musical noise from per-TF beamformer switching while preserving speech and spatial cues. Experiments on the **SPEAR/EasyCom** smart-glasses array show **sub-band Inter-Method PCA** consistently outperforms iso-MVDR, hybrid-MVDR, and wide-band subspace baselines in SI-SDR/SDR/PESQ, with clearer spectrograms and lower noise floors. :contentReference[oaicite:0]{index=0}
+We revisit **hybrid-MVDR** beamforming and propose three add-ons—**Mask-Hybrid-MVDR**, **Sub-band Inter-Method PCA**, and **Inter-Frequency PCA**—to reduce musical noise from per-TF beamformer switching while preserving speech and spatial cues. Experiments on the **SPEAR/EasyCom** smart-glasses array show **sub-band Inter-Method PCA** consistently outperforms iso-MVDR, hybrid-MVDR, and wide-band subspace baselines in SI-SDR/SDR/PESQ, with clearer spectrograms and lower noise floors. 
+
+<div class="row justify-content-sm-center">
+    <div class="col-sm-8 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/PCA_wide.png" title="Wide-band PCA" class="img-fluid rounded z-depth-1" %}
+    </div>
+    <div class="col-sm-4 mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/beamforming.png" title="Beamforming" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    From left to right: (a) Wide-band PCA; (b) Beamforming; 
+</div>
+
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/OracleBeam/subspace_hybrid.png" title="Subspace Hybrid-MVDR" class="img-fluid rounded z-depth-1" %}
     </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/beamforming.png" title="Beamforming" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/PCA_wide.png" title="Wide-band PCA" class="img-fluid rounded z-depth-1" %}
-    </div>
 </div>
 <div class="caption">
-    From left to right: (a) Beamforming; (b) Vanilla Subspace MVDR; (c) Wide-band PCA
+    Subspace Hybrid-MVDR
 </div>
 
+
 ### Background
-**MVDR** minimizes output power with a distortionless constraint \( \mathbf{w}^H\mathbf{d}(\theta)=1 \) using a noise covariance \( \mathbf{R} \):
-\[
+**MVDR** minimizes output power with a distortionless constraint $$\mathbf{w}^H\mathbf{d}(\theta)=1 $ using a noise covariance $ \mathbf{R} $:
+
+$$
 \mathbf{w}(f)=\frac{\mathbf{R}^{-1}(f)\mathbf{d}(\theta)}{\mathbf{d}^H(\theta)\mathbf{R}^{-1}(f)\mathbf{d}(\theta)}.
-\]
-**Hybrid-MVDR** builds a small dictionary of \( \mathbf{R} \) (isotropic, anisotropic diffuse, plane-wave, white), applies each MVDR per TF bin, and selects the **minimum-energy** output; this denoises aggressively but induces **musical noise** from rapid switching. **Subspace Hybrid-MVDR** then applies **Inter-Method PCA** to (iso, hybrid) outputs to smooth artifacts. :contentReference[oaicite:2]{index=2}
+$$
+
+**Hybrid-MVDR** builds a small dictionary of $ \mathbf{R} $ (isotropic, anisotropic diffuse, plane-wave, white), applies each MVDR per TF bin, and selects the **minimum-energy** output; this denoises aggressively but induces **musical noise** from rapid switching. **Subspace Hybrid-MVDR** then applies **Inter-Method PCA** to (iso, hybrid) outputs to smooth artifacts. 
 
 ### Our Add-ons
 <div class="row">
@@ -48,12 +58,12 @@ We revisit **hybrid-MVDR** beamforming and propose three add-ons—**Mask-Hybrid
     From left to right: Subspace Hybrid-MVDR, Mask Hybrid-MVDR, and Frequency Subspace Hybrid-MVDR
 </div>
 
-- **Mask-Hybrid-MVDR.** Treat the hybrid output as a rough speech estimate → derive **speech-presence mask** → update steering vector and NCM adaptively → run **adaptive MVDR** to mitigate non-linear musical distortion. :contentReference[oaicite:3]{index=3}
-- **Sub-band Inter-Method PCA.** Replace wide-band PCA with **per-band PCA** over \(K\) equal-width frequency groups: \( Z=[Z_1,\dots,Z_K],\; Z_i\in\mathbb{C}^{2\times F/K} \). This respects frequency-dependent beam patterns and SNR, improving high-band preservation. :contentReference[oaicite:4]{index=4}
-- **Inter-Frequency PCA.** Treat the **frequency axis as the signal space** and beamformer variants as samples \((M{+}1)\times F\), promoting spectral coherence; included as an ablation. :contentReference[oaicite:5]{index=5}
+- **Mask-Hybrid-MVDR.** Treat the hybrid output as a rough speech estimate → derive **speech-presence mask** → update steering vector and NCM adaptively → run **adaptive MVDR** to mitigate non-linear musical distortion. 
+- **Sub-band Inter-Method PCA.** Replace wide-band PCA with **per-band PCA** over $K$ equal-width frequency groups: $ Z=[Z_1,\dots,Z_K],\; Z_i\in\mathbb{C}^{2\times F/K} $. This respects frequency-dependent beam patterns and SNR, improving high-band preservation. [oaicite:4]{index=4}
+- **Inter-Frequency PCA.** Treat the **frequency axis as the signal space** and beamformer variants as samples $(M{+}1)\times F$, promoting spectral coherence; included as an ablation. 
 
 ### Dataset & Setup
-We use **SPEAR** (EASYCOM subset): meetings with up to 3 concurrent talkers, **smart-glasses 6-mic array**, plus 10 loudspeakers emitting diffuse noise. Ground-truth DOAs provided from on-device cameras. Metrics: **PESQ**, **SDR**, **SI-SDR**. :contentReference[oaicite:6]{index=6}
+We use **SPEAR** (EASYCOM subset): meetings with up to 3 concurrent talkers, **smart-glasses 6-mic array**, plus 10 loudspeakers emitting diffuse noise. Ground-truth DOAs provided from on-device cameras. Metrics: **PESQ**, **SDR**, **SI-SDR**. 
 
 
 <div class="row">
@@ -74,28 +84,28 @@ We use **SPEAR** (EASYCOM subset): meetings with up to 3 concurrent talkers, **s
 
 
 ### Key Findings
-- **Sub-band PCA > Wide-band PCA.** Per-band processing **reduces musical noise** and **retains high-freq speech energy** better than wide-band PCA that overfits low-freq energy. :contentReference[oaicite:8]{index=8}
-- **Hybrid-MVDR** excels at **aggressive denoising** but needs post-smoothing; PCA modules provide that smoothing. :contentReference[oaicite:9]{index=9}
-- **Inter-Frequency PCA** lags due to strong **cross-frequency noise correlation**, limiting separability when frequencies are treated as the feature space. :contentReference[oaicite:10]{index=10}
-- **Mask-MVDR** can help in principle, but gains are **mask-quality limited** when the hybrid estimate is not clean enough to seed robust masks. :contentReference[oaicite:11]{index=11}
+- **Sub-band PCA > Wide-band PCA.** Per-band processing **reduces musical noise** and **retains high-freq speech energy** better than wide-band PCA that overfits low-freq energy. 
+- **Hybrid-MVDR** excels at **aggressive denoising** but needs post-smoothing; PCA modules provide that smoothing. 
+- **Inter-Frequency PCA** lags due to strong **cross-frequency noise correlation**, limiting separability when frequencies are treated as the feature space. 
+- **Mask-MVDR** can help in principle, but gains are **mask-quality limited** when the hybrid estimate is not clean enough to seed robust masks.
 
 ### Spectrograms (Qualitative)
 
 <div class="row">
     <div class="col-sm mt-5 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/SDR.png" title="Noisy" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/noisy.png" title="Noisy" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-5 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/SI-SDR.png" title="Iso-MVDR" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/ISO-MVDR.png" title="Iso-MVDR" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-5 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/PESQ.png" title="Hybrid MVDR" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/Hybrid-MVDR (minimum energy).png" title="Hybrid MVDR" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-5 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/PESQ.png" title="Inter-method PCA (Wideband)" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/Inter-method PCA (Wideband).png.png" title="Inter-method PCA (Wideband)" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-5 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/PESQ.png" title="Inter-method PCA (4 Subbands)" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/Inter-method PCA (Subband).png.png" title="Inter-method PCA (4 Subbands)" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -103,8 +113,8 @@ We use **SPEAR** (EASYCOM subset): meetings with up to 3 concurrent talkers, **s
 </div>
 
 ### Takeaways
-- **Practical recipe:** run a small **NCM dictionary** (iso + a few anisotropic/plane-wave models) → **hybrid min-energy selection** → **sub-band PCA** (e.g., \(K{=}8\)–16).  
-- **When to skip:** if masks are unreliable or latency is tight, **avoid mask-MVDR**; prefer **sub-band PCA** for stable gains. :contentReference[oaicite:13]{index=13}
+- **Practical recipe:** run a small **NCM dictionary** (iso + a few anisotropic/plane-wave models) → **hybrid min-energy selection** → **sub-band PCA** (e.g., $K{=}8$–16).  
+- **When to skip:** if masks are unreliable or latency is tight, **avoid mask-MVDR**; prefer **sub-band PCA** for stable gains. 
 
 ### References
-Project report: OracleBeam — *Improvement and Ablations on Subspace Hybrid-MVDR*. UIUC ECE 513 Final Report. :contentReference[oaicite:14]{index=14}
+Project report: OracleBeam — *Improvement and Ablations on Subspace Hybrid-MVDR*. UIUC ECE 513 Final Report. 
