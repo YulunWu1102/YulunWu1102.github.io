@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Subspace-SpatialCodec — Neural Spatial Speech Coding with a Subspace-Driven Reference
-description: 2024/06 - 2024/08, 
+title: Subspace-SpatialCodec 
+description: Neural Spatial Speech Coding with a Subspace-Driven Reference (2024/06 - 2024/08)
 img: assets/img/SSC/SSC_chart.png
 importance: 2
 category: work

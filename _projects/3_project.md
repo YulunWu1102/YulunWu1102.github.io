@@ -1,8 +1,8 @@
 ---
 layout: page
-title: OracleBeam — Improvements & Ablations on Subspace Hybrid-MVDR
-description: 2024 — ECE 513 final project on beamforming, musical-noise reduction, and subspace PCA variants
-img: assets/img/OracleBeam/inter_freq.png
+title: OracleBeam
+description: Improvements & Ablations on Subspace Hybrid-MVDR (2024/04 - 2024-06)
+img: assets/img/OracleBeam/Inter_freq.png
 importance: 2
 category: work
 related_publications: false
@@ -59,7 +59,7 @@ $$
 </div>
 
 - **Mask-Hybrid-MVDR.** Treat the hybrid output as a rough speech estimate → derive **speech-presence mask** → update steering vector and NCM adaptively → run **adaptive MVDR** to mitigate non-linear musical distortion. 
-- **Sub-band Inter-Method PCA.** Replace wide-band PCA with **per-band PCA** over $K$ equal-width frequency groups: $ Z=[Z_1,\dots,Z_K],\; Z_i\in\mathbb{C}^{2\times F/K} $. This respects frequency-dependent beam patterns and SNR, improving high-band preservation. [oaicite:4]{index=4}
+- **Sub-band Inter-Method PCA.** Replace wide-band PCA with **per-band PCA** over $K$ equal-width frequency groups: $ Z=[Z_1,\dots,Z_K],\; Z_i\in\mathbb{C}^{2\times F/K} $. This respects frequency-dependent beam patterns and SNR, improving high-band preservation.
 - **Inter-Frequency PCA.** Treat the **frequency axis as the signal space** and beamformer variants as samples $(M{+}1)\times F$, promoting spectral coherence; included as an ablation. 
 
 ### Dataset & Setup
@@ -93,7 +93,7 @@ We use **SPEAR** (EASYCOM subset): meetings with up to 3 concurrent talkers, **s
 
 <div class="row">
     <div class="col-sm mt-5 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/noisy.png" title="Noisy" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/Noisy.png" title="Noisy" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-5 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/OracleBeam/ISO-MVDR.png" title="Iso-MVDR" class="img-fluid rounded z-depth-1" %}
@@ -102,10 +102,10 @@ We use **SPEAR** (EASYCOM subset): meetings with up to 3 concurrent talkers, **s
         {% include figure.liquid loading="eager" path="assets/img/OracleBeam/Hybrid-MVDR (minimum energy).png" title="Hybrid MVDR" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-5 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/Inter-method PCA (Wideband).png.png" title="Inter-method PCA (Wideband)" class="img-fluid rounded z-depth-1" %}
-    </div>
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/Inter-method_PCA_Wideband.png" title="Inter-method PCA (Wideband)" class="img-fluid rounded z-depth-1" %}
+    </div> 
     <div class="col-sm mt-5 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/Inter-method PCA (Subband).png.png" title="Inter-method PCA (4 Subbands)" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/OracleBeam/Inter-method_PCA_Subband_.png" title="Inter-method PCA (4 Subbands)" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
