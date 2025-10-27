@@ -3,7 +3,7 @@ layout: default
 permalink: /music/
 title: music
 nav: true
-nav_order: 1
+nav_order: 9
 pagination:
   enabled: true
   collection: music
