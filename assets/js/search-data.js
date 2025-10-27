@@ -440,6 +440,21 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
+            },},{id: "music-a-post-with-images",
+          title: 'a post with images',
+          description: "this is what included images could look like",
+          section: "Music",handler: () => {
+              window.location.href = "/music/images/";
+            },},{id: "music-a-post-with-videos",
+          title: 'a post with videos',
+          description: "this is what included videos could look like",
+          section: "Music",handler: () => {
+              window.location.href = "/music/videos/";
+            },},{id: "music-a-post-with-audios",
+          title: 'a post with audios',
+          description: "this is what included audios could look like",
+          section: "Music",handler: () => {
+              window.location.href = "/music/audios/";
             },},{id: "news-i-started-my-master-degree-in-uiuc",
           title: 'I started my Master degree in UIUC',
           description: "",
