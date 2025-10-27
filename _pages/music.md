@@ -18,14 +18,14 @@ pagination:
 
 <div class="post">
 
-{% assign blog_name_size = site.music_blog_name | size %}
-{% assign blog_description_size = site.music_blog_description | size %}
+{% assign blog_name_size = site.music_name | size %}
+{% assign blog_description_size = site.music_description | size %}
 
 {% if blog_name_size > 0 or blog_description_size > 0 %}
 
   <div class="header-bar">
-    <h1>{{ site.music_blog_name }}</h1>
-    <h2>{{ site.music_blog_description }}</h2>
+    <h1>{{ site.music_name }}</h1>
+    <h2>{{ site.music_description }}</h2>
   </div>
   {% endif %}
 
