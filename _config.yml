@@ -159,6 +159,9 @@ collections:
     output: true
   projects:
     output: true
+  music:
+    output: true
+    permalink: /music/:title/
 
 # -----------------------------------------------------------------------------
 # Jekyll settings
