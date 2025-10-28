@@ -9,14 +9,11 @@ thumbnail: assets/video/video_cover/im_going_to_remember_u.png
 ---
 
 
-It's a Chiense pop song ([追光者](https://www.youtube.com/watch?v=Th7XKEpWdaM)) that has one of my favorite guitar solo licks. Here's my attempt to cover the solo with my Fender Strat...
-
-
 
 <div class="row mt-3" id="light-chaser-wrap">
   <div class="col-sm mt-3 mt-md-0">
     {% include video.liquid
-       path="assets/video/video_content/light_chaser.mp4"
+       path="assets/video/video_content/im_going_to_remember_u.mp4"
        class="w-100 rounded z-depth-1"
        controls=true %}
   </div>
