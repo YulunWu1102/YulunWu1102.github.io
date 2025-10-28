@@ -440,26 +440,26 @@ ninja.data = [{
           description: "",
           section: "Books",handler: () => {
               window.location.href = "/books/the_godfather/";
-            },},{id: "music-a-post-with-images",
-          title: 'a post with images',
-          description: "this is what included images could look like",
+            },},{id: "music-comfortably-numb-solo-cover",
+          title: 'Comfortably Numb Solo Cover',
+          description: "David Gilmour &gt; Roger Waters",
           section: "Music",handler: () => {
-              window.location.href = "/music/images/";
-            },},{id: "music-a-post-with-videos",
-          title: 'a post with videos',
-          description: "this is what included videos could look like",
+              window.location.href = "/music/comfortably_numb/";
+            },},{id: "music-butter-fly-digimon-adventure-theme-guitar-solo",
+          title: 'Butter-fly (Digimon Adventure theme) Guitar Solo',
+          description: "無限大な夢のあとの 何もない世の中じゃ",
           section: "Music",handler: () => {
-              window.location.href = "/music/videos/";
-            },},{id: "music-a-post-with-audios",
-          title: 'a post with audios',
-          description: "this is what included audios could look like",
-          section: "Music",handler: () => {
-              window.location.href = "/music/audios/";
-            },},{id: "music-light-chaser-追光者-solo",
-          title: 'Light Chaser (追光者) Solo',
+              window.location.href = "/music/butter_fly/";
+            },},{id: "music-light-chaser-追光者-solo-cover",
+          title: 'Light Chaser (追光者) Solo Cover',
           description: "Light Chaser (追光者) solo part covered by my Stratocaster",
           section: "Music",handler: () => {
-              window.location.href = "/music/Solo/";
+              window.location.href = "/music/light_chaser/";
+            },},{id: "music-i-39-m-going-to-remember-you-鲜花-solo-cover",
+          title: 'I&amp;#39;m Going To Remember You (鲜花) Solo Cover',
+          description: "我的心啊我的心，整栋出租",
+          section: "Music",handler: () => {
+              window.location.href = "/music/im_going_to_remember_you/";
             },},{id: "news-i-started-my-master-degree-in-uiuc",
           title: 'I started my Master degree in UIUC',
           description: "",
