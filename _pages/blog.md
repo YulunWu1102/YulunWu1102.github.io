@@ -33,7 +33,7 @@ so we switch strings/links based on paginator.collection.
 {% endif %}
 
 <div class="post">
-
+ 
   <div class="header-bar">
     <h1>{{ title_text }}</h1>
     <h2>{{ desc_text }}</h2>
