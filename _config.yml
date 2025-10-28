@@ -88,6 +88,7 @@ bing_site_verification: # out your bing-site-verification ID (Bing Webmaster)
 
 blog_name: Ben's Fun Page # blog_name will be displayed in your blog page
 blog_description: a simple whitespace theme for academics
+
 music_name: Ben's Music Fun Page # music_name will be displayed in your music page
 music_description: My music recordings, compositions, and gigs
 
@@ -263,6 +264,12 @@ jekyll-archives:
       year: "/blog/:year/"
       tags: "/blog/:type/:name/"
       categories: "/blog/:type/:name/"
+    music:
+      enabled: [year, tags, categories]
+      permalinks:
+        year: "/music/:year/"
+        tags: "/music/:type/:name/"
+        categories: "/music/:type/:name/"
   books:
     enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
 
