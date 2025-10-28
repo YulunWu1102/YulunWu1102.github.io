@@ -455,6 +455,11 @@ ninja.data = [{
           description: "this is what included audios could look like",
           section: "Music",handler: () => {
               window.location.href = "/music/audios/";
+            },},{id: "music-light-chaser-追光者-solo",
+          title: 'Light Chaser (追光者) Solo',
+          description: "Light Chaser (追光者) solo part covered by my Stratocaster",
+          section: "Music",handler: () => {
+              window.location.href = "/music/Solo/";
             },},{id: "news-i-started-my-master-degree-in-uiuc",
           title: 'I started my Master degree in UIUC',
           description: "",
