@@ -14,24 +14,28 @@ nav_order: 9
     <h2>{{ site.music_description }}</h2>
   </div>
 
-  {% assign display_tags_list = site.music_display_tags | default: site.display_tags %}
-  {% assign display_categories_list = site.music_display_categories | default: site.display_categories %}
+  {% if site.music_display_tags and site.music_display_tags.size > 0 or site.music_display_categories and site.music_display_categories.size > 0 %}
 
-  {% if display_tags_list or display_categories_list %}
   <div class="tag-category-list">
     <ul class="p-0 m-0">
-      {% for tag in display_tags_list %}
-        <li><i class="fa-solid fa-hashtag fa-sm"></i>
-          <a href="{{ tag | slugify | prepend: '/music/tag/' | relative_url }}">{{ tag }}</a>
+      {% for tag in site.music_display_tags %}
+        <li>
+          <i class="fa-solid fa-hashtag fa-sm"></i> <a href="{{ tag | slugify | prepend: '/music/tag/' | relative_url }}">{{ tag }}</a>
         </li>
-        {% unless forloop.last %}<p>&bull;</p>{% endunless %}
+        {% unless forloop.last %}
+          <p>&bull;</p>
+        {% endunless %}
       {% endfor %}
-      {% if display_categories_list and display_tags_list %}<p>&bull;</p>{% endif %}
-      {% for category in display_categories_list %}
-        <li><i class="fa-solid fa-tag fa-sm"></i>
-          <a href="{{ category | slugify | prepend: '/music/category/' | relative_url }}">{{ category }}</a>
+      {% if site.music_display_categories.size > 0 and site.music_display_tags.size > 0 %}
+        <p>&bull;</p>
+      {% endif %}
+      {% for category in site.music_display_categories %}
+        <li>
+          <i class="fa-solid fa-tag fa-sm"></i> <a href="{{ category | slugify | prepend: '/music/category/' | relative_url }}">{{ category }}</a>
         </li>
-        {% unless forloop.last %}<p>&bull;</p>{% endunless %}
+        {% unless forloop.last %}
+          <p>&bull;</p>
+        {% endunless %}
       {% endfor %}
     </ul>
   </div>
@@ -94,24 +98,31 @@ nav_order: 9
           {{ read_time }} min read &nbsp; &middot; &nbsp; {{ post.date | date: '%B %d, %Y' }}
         </p>
 
-        <p class="post-tags">
+         <p class="post-tags">
           <a href="{{ year | prepend: '/music/' | relative_url }}">
-            <i class="fa-solid fa-calendar fa-sm"></i> {{ year }}
-          </a>
-          {% if tags != "" %}
+            <i class="fa-solid fa-calendar fa-sm"></i> {{ year }} </a>
+
+            {% if tags != "" %}
             &nbsp; &middot; &nbsp;
-            {% for tag in post.tags %}
+              {% for tag in post.tags %}
               <a href="{{ tag | slugify | prepend: '/music/tag/' | relative_url }}">
-                <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>{% unless forloop.last %}&nbsp;{% endunless %}
-            {% endfor %}
-          {% endif %}
-          {% if categories != "" %}
+                <i class="fa-solid fa-hashtag fa-sm"></i> {{ tag }}</a>
+                {% unless forloop.last %}
+                  &nbsp;
+                {% endunless %}
+                {% endfor %}
+            {% endif %}
+
+            {% if categories != "" %}
             &nbsp; &middot; &nbsp;
-            {% for category in post.categories %}
+              {% for category in post.categories %}
               <a href="{{ category | slugify | prepend: '/music/category/' | relative_url }}">
-                <i class="fa-solid fa-tag fa-sm"></i> {{ category }}</a>{% unless forloop.last %}&nbsp;{% endunless %}
-            {% endfor %}
-          {% endif %}
+                <i class="fa-solid fa-tag fa-sm"></i> {{ category }}</a>
+                {% unless forloop.last %}
+                  &nbsp;
+                {% endunless %}
+                {% endfor %}
+            {% endif %}
         </p>
 
         {% if post.thumbnail %}
