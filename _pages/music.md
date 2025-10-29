@@ -4,16 +4,7 @@ permalink: /music/
 title: music
 nav: true
 nav_order: 9
-pagination:
-  enabled: true
-  collection: music
-  per_page: 5
-  permalink: /music/page/:num/
-  sort_field: date
-  sort_reverse: true
-  trail:
-    before: 2
-    after: 2
+# NOTE: pagination disabled to avoid paginate-v2 content reuse issue
 ---
 
 <div class="post">

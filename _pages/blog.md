@@ -10,9 +10,6 @@ pagination:
   per_page: 5
   sort_field: date
   sort_reverse: true
-  trail:
-    before: 2
-    after: 2
 ---
 
 {% comment %}
