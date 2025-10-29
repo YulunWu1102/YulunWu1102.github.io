@@ -72,7 +72,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/music/";
           },
-        },{id: "post-a-post-with-plotly-js",
+        },{id: "post-music-theory-notes",
+        
+          title: "Music Theory Notes",
+        
+        description: "Everything-Included Notes for UIUC Music Theory Course",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/MUS102/";
+          
+        },
+      },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
         
