@@ -83,6 +83,17 @@ ninja.data = [{
             window.location.href = "/blog/2025/MUS102/";
           
         },
+      },{id: "post-electronic-music-synthesis-notes",
+        
+          title: "Electronic Music Synthesis Notes",
+        
+        description: "Everything-Included Notes for UIUC Electronic Music Synthesis Course",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/ECE402/";
+          
+        },
       },{id: "post-a-post-with-plotly-js",
         
           title: "a post with plotly.js",
