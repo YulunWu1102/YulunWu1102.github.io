@@ -70,7 +70,7 @@ ninja.data = [{
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/music/index.html";
+            window.location.href = "/music/";
           },
         },{id: "post-a-post-with-plotly-js",
         
