@@ -3,8 +3,8 @@ layout: post
 title: Comfortably Numb Solo Cover
 date: 2024-07-01 21:01:00
 description: David Gilmour > Roger Waters
-tags: music
-categories: guitar
+tags: [music]
+categories: [guitar]
 thumbnail: assets/video/video_cover/comfortably_numb.png
 ---
 
