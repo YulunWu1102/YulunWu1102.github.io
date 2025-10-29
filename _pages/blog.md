@@ -25,22 +25,15 @@ so we switch strings/links based on paginator.collection.
   {% assign base_path = '/music' %}
   {% assign title_text = site.music_name %}
   {% assign desc_text  = site.music_description %}
-  {% assign items = site.music %}
+  {% assign display_tags_list = site.music_display_tags | default: site.display_tags %}
+  {% assign display_categories_list = site.music_display_categories | default: site.display_categories %}
 {% else %}
   {% assign base_path = '/blog' %}
   {% assign title_text = site.blog_name %}
   {% assign desc_text  = site.blog_description %}
-  {% assign items = site.posts %}
+  {% assign display_tags_list = site.display_tags %}
+  {% assign display_categories_list = site.display_categories %}
 {% endif %}
-
-{%- assign tags_csv = items | where_exp: "p", "p.tags and p.tags.size > 0" | map: "tags" | join: "," -%}
-{%- assign cats_csv = items | where_exp: "p", "p.categories and p.categories.size > 0" | map: "categories" | join: "," -%}
-
-{%- assign display_tags_list = tags_csv | split: "," | map: "strip" | uniq | sort -%}
-{%- assign display_tags_list = display_tags_list | where_exp: "t", "t != ''" -%}
-
-{%- assign display_categories_list = cats_csv | split: "," | map: "strip" | uniq | sort -%}
-{%- assign display_categories_list = display_categories_list | where_exp: "c", "c != ''" -%}
 
 <div class="post">
  

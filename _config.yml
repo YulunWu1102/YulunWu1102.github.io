@@ -276,6 +276,9 @@ jekyll-archives:
 display_tags: ["formatting", "images", "links", "math", "code", "blockquotes"] # these tags will be displayed on the front page of your blog
 display_categories: ["external-services"] # these categories will be displayed on the front page of your blog
 
+music_display_tags: ["guitar"] # these tags will be displayed on the front page of your blog
+music_display_categories: ["music"] # these categories will be displayed on the front page of your blog
+
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
 # -----------------------------------------------------------------------------

@@ -3,8 +3,8 @@ layout: post
 title: I'm Going To Remember You (鲜花) Solo Cover
 date: 2025-03-22 21:01:00
 description: 我的心啊我的心，整栋出租
-tags: music
-categories: guitar
+tags: guitar
+categories: music
 thumbnail: assets/video/video_cover/im_going_to_remember_u.png
 ---
 

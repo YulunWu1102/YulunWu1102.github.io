@@ -3,8 +3,8 @@ layout: post
 title: Butter-fly (Digimon Adventure theme) Guitar Solo
 date: 2024-08-03 21:01:00
 description: 無限大な夢のあとの 何もない世の中じゃ
-tags: music
-categories: guitar
+tags: guitar
+categories: music
 thumbnail: assets/video/video_cover/butter_fly.png
 ---
 

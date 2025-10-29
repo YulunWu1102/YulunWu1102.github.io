@@ -23,18 +23,8 @@ pagination:
     <h2>{{ site.music_description }}</h2>
   </div>
 
-  {% assign items = site.music %}
-  {% assign items = site.music %}
-
-  {%- assign tags_csv = items | where_exp: "p", "p.tags and p.tags.size > 0" | map: "tags" | join: "," -%}
-  {%- assign cats_csv = items | where_exp: "p", "p.categories and p.categories.size > 0" | map: "categories" | join: "," -%}
-
-  {%- assign display_tags_list = tags_csv | split: "," | map: "strip" | uniq | sort -%}
-  {%- assign display_tags_list = display_tags_list | where_exp: "t", "t != ''" -%}
-
-  {%- assign display_categories_list = cats_csv | split: "," | map: "strip" | uniq | sort -%}
-  {%- assign display_categories_list = display_categories_list | where_exp: "c", "c != ''" -%}
-
+  {% assign display_tags_list = site.music_display_tags | default: site.display_tags %}
+  {% assign display_categories_list = site.music_display_categories | default: site.display_categories %}
 
   {% if display_tags_list or display_categories_list %}
   <div class="tag-category-list">

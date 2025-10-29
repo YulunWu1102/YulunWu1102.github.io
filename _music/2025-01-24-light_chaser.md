@@ -3,8 +3,8 @@ layout: post
 title: Light Chaser (追光者) Solo Cover
 date: 2025-01-24 21:01:00
 description: Light Chaser (追光者) solo part covered by my Stratocaster
-tags: music
-categories: guitar
+tags: guitar
+categories: music
 thumbnail: assets/video/video_cover/light_chaser.png
 ---
 
