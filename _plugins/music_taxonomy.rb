@@ -1,7 +1,7 @@
 # _plugins/music_taxonomy.rb
 module Jekyll
     class MusicTaxonomyPage < Page
-        def initialize(site, base, dir, taxonomy, term)
+    def initialize(site, base, dir, taxonomy, term)
         @site = site
         @base = base
         @dir  = dir
@@ -12,18 +12,24 @@ module Jekyll
         data["title"]    = term
         data["term"]     = term
         data["taxonomy"] = taxonomy # "tag" or "category"
-        end
     end
+end
 
 class MusicTaxonomyGenerator < Generator
     safe true
     priority :low
 
-        def generate(site)
-            music = site.collections.dig("music", "docs") || []
+    def generate(site)
+            music_collection = site.collections["music"]
+            return unless music_collection
 
-            tags = music.flat_map { |d| d.data["tags"] || [] }.uniq
-            cats = music.flat_map { |d| d.data["categories"] || [] }.uniq
+            # NOTE: use .docs, not dig(...)
+            music_docs = music_collection.docs
+
+            tags = music_docs.flat_map { |d| Array(d.data["tags"]) }
+                            .map(&:to_s).reject(&:empty?).uniq
+            cats = music_docs.flat_map { |d| Array(d.data["categories"]) }
+                            .map(&:to_s).reject(&:empty?).uniq
 
             tags.each do |t|
                 dir = File.join("music", "tag", Jekyll::Utils.slugify(t))
@@ -31,8 +37,8 @@ class MusicTaxonomyGenerator < Generator
             end
 
             cats.each do |c|
-                dir = File.join("music", "category", Jekyll::Utils.slugify(c))
-                site.pages << MusicTaxonomyPage.new(site, site.source, dir, "category", c)
+            dir = File.join("music", "category", Jekyll::Utils.slugify(c))
+            site.pages << MusicTaxonomyPage.new(site, site.source, dir, "category", c)
             end
         end
     end
