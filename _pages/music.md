@@ -23,8 +23,9 @@ pagination:
     <h2>{{ site.music_description }}</h2>
   </div>
 
-  {% assign display_tags_list = site.music_display_tags | default: site.display_tags %}
-  {% assign display_categories_list = site.music_display_categories | default: site.display_categories %}
+  {% assign items = site.music %}
+  {% assign display_tags_list = items | map: "tags" | join: "," | split: "," | map: "strip" | uniq | sort %}
+  {% assign display_categories_list = items | map: "categories" | join: "," | split: "," | map: "strip" | uniq | sort %}
 
   {% if display_tags_list or display_categories_list %}
   <div class="tag-category-list">

@@ -25,15 +25,17 @@ so we switch strings/links based on paginator.collection.
   {% assign base_path = '/music' %}
   {% assign title_text = site.music_name %}
   {% assign desc_text  = site.music_description %}
-  {% assign display_tags_list = site.music_display_tags | default: site.display_tags %}
-  {% assign display_categories_list = site.music_display_categories | default: site.display_categories %}
+  {% assign items = site.music %}
 {% else %}
   {% assign base_path = '/blog' %}
   {% assign title_text = site.blog_name %}
   {% assign desc_text  = site.blog_description %}
-  {% assign display_tags_list = site.display_tags %}
-  {% assign display_categories_list = site.display_categories %}
+  {% assign items = site.posts %}
 {% endif %}
+
+{% assign display_tags_list = items | map: "tags" | join: "," | split: "," | map: "strip" | uniq | sort %}
+{% assign display_categories_list = items | map: "categories" | join: "," | split: "," | map: "strip" | uniq | sort %}
+
 
 <div class="post">
  
