@@ -10,7 +10,7 @@ I'm blessed to have WASPAA as my first conference experience! Such an amazing pa
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/WASPAA/waspaa_1.jpg" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="WASPAA/waspaa_1.jpg" class="img-fluid rounded z-depth-1" %}
     </div>
     <div class="col-sm mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/WASPAA/waspaa_2.jpg" class="img-fluid rounded z-depth-1" %}
