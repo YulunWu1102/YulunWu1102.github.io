@@ -30,12 +30,19 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "nav-teaching",
-          title: "teaching",
-          description: "Materials for courses you taught. Replace this text with your description.",
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/teaching/";
+            window.location.href = "/blog/";
+          },
+        },{id: "nav-music",
+          title: "music",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/music/";
           },
         },{id: "nav-people",
           title: "people",
@@ -43,6 +50,13 @@ ninja.data = [{
           section: "Navigation",
           handler: () => {
             window.location.href = "/people/";
+          },
+        },{id: "nav-teaching",
+          title: "teaching",
+          description: "Materials for courses you taught. Replace this text with your description.",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/teaching/";
           },
         },{id: "dropdown-bookshelf",
               title: "bookshelf",
@@ -58,21 +72,7 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "nav-blog",
-          title: "blog",
-          description: "",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/blog/";
-          },
-        },{id: "nav-music",
-          title: "music",
-          description: "",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/music/";
-          },
-        },{id: "post-music-theory-notes",
+            },{id: "post-music-theory-notes",
         
           title: "Music Theory Notes",
         
