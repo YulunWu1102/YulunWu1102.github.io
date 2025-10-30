@@ -3,7 +3,7 @@ layout: default
 permalink: /music/
 title: music
 nav: true
-nav_order: 9
+nav_order: 6
 # NOTE: pagination disabled to avoid paginate-v2 content reuse issue
 ---
 

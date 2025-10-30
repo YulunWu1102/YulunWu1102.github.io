@@ -3,7 +3,7 @@ layout: profiles
 permalink: /people/
 title: people
 description: Second year MS. ECE student at UIUC
-nav: true
+nav: flase
 nav_order: 7
 
 profiles:
