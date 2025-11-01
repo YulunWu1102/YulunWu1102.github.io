@@ -72,15 +72,15 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-",
+            },{id: "post-building-a-mini-daw-in-juce",
         
-          title: "",
+          title: "Building a Mini-DAW in JUCE",
         
-        description: "",
+        description: "GUI → Transport → MIDI → Wavetable. Key JUCE classes and functions I used, with light code.",
         section: "Posts",
         handler: () => {
           
-            window.location.href = "/blog/2025/2023-12-05-JUCE/";
+            window.location.href = "/blog/2025/JUCE/";
           
         },
       },{id: "post-music-theory-notes",
