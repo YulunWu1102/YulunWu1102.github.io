@@ -72,7 +72,18 @@ ninja.data = [{
               handler: () => {
                 window.location.href = "/blog/";
               },
-            },{id: "post-music-theory-notes",
+            },{id: "post-",
+        
+          title: "",
+        
+        description: "",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2025/2023-12-05-JUCE/";
+          
+        },
+      },{id: "post-music-theory-notes",
         
           title: "Music Theory Notes",
         
